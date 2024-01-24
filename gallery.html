@@ -1,0 +1,124 @@
+<!-- gallery.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/galleryStyle.css">
+    <title>Drone Agency</title>
+</head>
+
+<body>
+
+    <header class="transparent-header">
+        <img class="logo" src="Img_Vid/horses in the snow.jpg" alt="Logo">
+        <nav class="main-nav">
+            <ul>
+                <li><a href="droneAgency.html">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="infoPrices.html">Info & Prices</a></li>
+                <li><a href="quotationRequest.html">Quotation Request</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="account-button" id="accountButton">
+            <img src="Img_Vid/user.png">
+            <div class="dropdown-content" id="dropdownContent">
+                <a href="#">Login</a>
+                <a href="#">Review</a>
+                <a href="#">Settings</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="background-rectangle">
+        <div class="gallery-container" id="galleryContainer">
+            <div class="gallery-item" onclick="openPopup(0)">
+                <img src="Img_Vid/Beach_Shore.JPG" alt="Beach Shore">
+            </div>
+            <div class="gallery-item" onclick="openPopup(1)">
+                <img src="Img_Vid/Bikes.JPG" alt="Bikes">
+            </div>
+            <div class="gallery-item" onclick="openPopup(2)">
+                <img src="Img_Vid/Bikes_In_Sunny_Field.JPG" alt="Bikes in Sunny Field">
+            </div>
+            <div class="gallery-item" onclick="openPopup(3)">
+                <img src="Img_Vid/Cloudy_Beach.JPG" alt="Cloudy_Beach.JPG">
+            </div>
+            <div class="gallery-item" onclick="openPopup(4)">
+                <img src="Img_Vid/horses in the snow.jpg" alt="Horses in the Snow">
+            </div>
+            <div class="gallery-item" onclick="openPopup(5)">
+                <img src="Img_Vid/Snow_Landscape.JPG" alt="Snow_Landscape">
+            </div>
+            <div class="gallery-item" onclick="openPopup(6)">
+                <img src="Img_Vid/Sun_Hidden_Clouds.JPG" alt="Sun_Hidden_Clouds.JPG">
+            </div>
+            <div class="gallery-item" onclick="openPopup(7)">
+                <img src="Img_Vid/Sunny_Ground_Pic.JPG" alt="Sunny_Ground_Pic.JPG">
+            </div>
+            <div class="gallery-item" onclick="openPopup(8)">
+                <img src="Img_Vid/Upside_Vieuw.JPG" alt="Upside_Vieuw.JPG">
+            </div>
+            <div class="gallery-item" onclick="openPopup(9)">
+                <img src="Img_Vid/Vieuw_Portiragne.JPG" alt="Vieuw_Portiragne.JPG">
+            </div>
+            <!--more items as needed -->
+        </div>
+    </div>
+
+    <video class="background-video" autoplay muted loop>
+        <source src="Img_Vid/1st video portiragne.mp4" type="video/mp4">
+    </video>
+
+    <div class="popup" id="popup" onclick="closePopup()">
+        <span class="popup-arrow popup-left" onclick="prevImage(event)">❮</span>
+        <img id="popupImage">
+        <span class="popup-arrow popup-right" onclick="nextImage(event)">❯</span>
+    </div>
+
+    <script src="js/droneAgencyScript.js"></script>
+    <script>
+        var galleryImages = [
+            'Img_Vid/Beach_Shore.JPG',
+            'Img_Vid/Bikes.JPG',
+            'Img_Vid/Bikes_In_Sunny_Field.JPG',
+            'Img_Vid/Cloudy_Beach.JPG',
+            'Img_Vid/horses in the snow.jpg',
+            'Img_Vid/Snow_Landscape.JPG',
+            'Img_Vid/Sun_Hidden_Clouds.JPG',
+            'Img_Vid/Sunny_Ground_Pic.JPG',
+            'Img_Vid/Upside_Vieuw.JPG',
+            'Img_Vid/Vieuw_Portiragne.JPG'
+            // Add more image paths as needed
+        ];
+
+        var currentImageIndex = 0;
+
+        function openPopup(index) {
+            var imageSrc = galleryImages[index];
+            document.getElementById("popupImage").src = imageSrc;
+            document.getElementById("popup").style.display = "flex";
+            currentImageIndex = index;
+        }
+
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+
+        function nextImage(event) {
+            event.stopPropagation();
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            document.getElementById("popupImage").src = galleryImages[currentImageIndex];
+        }
+
+        function prevImage(event) {
+            event.stopPropagation();
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            document.getElementById("popupImage").src = galleryImages[currentImageIndex];
+        }
+    </script>
+</body>
+
+</html>
